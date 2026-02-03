@@ -130,7 +130,7 @@ class NotificationService {
     const InitializationSettings initializationSettings =
         InitializationSettings(android: android, iOS: ios);
 
-    await localNotificationsPlugin.initialize(initializationSettings,
+    await localNotificationsPlugin.initialize(settings: initializationSettings,
         onDidReceiveNotificationResponse: onTapNotification);
   }
 
@@ -168,10 +168,10 @@ class NotificationService {
 
   showLocalNotification(CustomNotification notification) {
     localNotificationsPlugin.show(
-      notification.id,
-      notification.title,
-      notification.body,
-      NotificationDetails(android: androidDetails, iOS: iosDetails),
+      id: notification.id,
+      title: notification.title,
+      body: notification.body,
+      notificationDetails: NotificationDetails(android: androidDetails, iOS: iosDetails),
       payload: jsonEncode(notification.payload?.toJson()),
     );
   }
